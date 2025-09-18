@@ -1,0 +1,327 @@
+{
+  "name": "Restauration_HITL",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3652e1b8-a7c0-469a-b3d0-27cd500a5dd2",
+              "leftValue": "={{ $json.match }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        272,
+        -80
+      ],
+      "id": "08e6895b-3e93-4f71-967f-072e0c922200",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "jerome.frasson.vsi@gmail.com",
+        "subject": "Validation du mot de passe",
+        "emailType": "text",
+        "message": "Félicitation : votre mot de passe est correct !",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        528,
+        -208
+      ],
+      "id": "053d46d5-525c-4bfd-8ab2-1cac5d1c27e4",
+      "name": "Mot de passe OK",
+      "webhookId": "672da293-e384-47b3-ba43-e3584f3bdaa8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1p5L8t0Ti7Odu8ke",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "jerome.frasson.vsi@gmail.com",
+        "subject": "Erreur de saisie mot de passe",
+        "emailType": "text",
+        "message": "Le mot de passe saisi n'est pas le bon !",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        528,
+        64
+      ],
+      "id": "a17b2f4b-4621-4a10-9de5-34d50577fa3a",
+      "name": "Erreur mot de passe",
+      "webhookId": "b4b94024-a969-4926-8e4c-747d7e70d7e2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1p5L8t0Ti7Odu8ke",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "jerome.frasson.vsi@gmail.com",
+        "subject": "Validation de la restauration par mot de passe",
+        "message": "Bonjour Jérôme,\nEntrez votre mot de passe pour déclencher la restauration du script d'origine.\n",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Saisie du mot de passe",
+              "fieldType": "password",
+              "placeholder": "Saisir le mot de passe ici"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -128,
+        -80
+      ],
+      "id": "16c14f7c-2cab-42c6-aa22-fa34db7289f2",
+      "name": "Human_In_The_Loop",
+      "webhookId": "7d1ae174-75a0-4f0e-a017-9c9692c265ab",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1p5L8t0Ti7Odu8ke",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Récupération du mot de passe saisi depuis l'entrée JSON\nmot_de_passe = items[0]['json']['data'].get('Saisie du mot de passe')\n\n# Comparaison avec le mot de passe attendu\nresultat = mot_de_passe == \"toto84\"\n\n# Renvoi du résultat sous forme d'objet JSON\nreturn {\n    \"match\": resultat\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -80
+      ],
+      "id": "ea9965ba-bfd2-4427-a0a8-54c660f4f8f4",
+      "name": "comparaison_mot_de_passe"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "10uKoMbsl5n8jPR4ftULvUiUc_1NYxy0OMyrjR-uvtU8",
+          "mode": "list",
+          "cachedResultName": "script_php",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10uKoMbsl5n8jPR4ftULvUiUc_1NYxy0OMyrjR-uvtU8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10uKoMbsl5n8jPR4ftULvUiUc_1NYxy0OMyrjR-uvtU8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "script": "<?php echo \"Hello World\"; ?>",
+            "row_number": 2
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "script",
+              "displayName": "script",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        736,
+        -208
+      ],
+      "id": "7ee9ccf0-85e2-43a9-9832-36dcc333bf97",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "31LaukvmbfzpoFVr",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "jerome.frasson.vsi@gmail.com",
+        "subject": "Restauration du Script",
+        "emailType": "text",
+        "message": "=Le script d'origine :  {{ $json.script }} a été restauré !",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        -208
+      ],
+      "id": "ac82a161-a178-4c50-b63f-5ee7ba8b29d3",
+      "name": "Send a message",
+      "webhookId": "3912178d-9236-49a9-a347-b8049fe48464",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1p5L8t0Ti7Odu8ke",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -352,
+        -80
+      ],
+      "id": "d0f62770-a1b4-4e51-b746-0f2a2a947369",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Mot de passe OK",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Erreur mot de passe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human_In_The_Loop": {
+      "main": [
+        [
+          {
+            "node": "comparaison_mot_de_passe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comparaison_mot_de_passe": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mot de passe OK": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Human_In_The_Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5b4383b2-c549-4560-82c9-dc1b3232cece",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "779524e63dbde32a73cbf739cde16780b056dc31072ff92c4fdba4f2d62e9ee8"
+  },
+  "id": "yAzRwmyHhPqZMFhu",
+  "tags": []
+}
