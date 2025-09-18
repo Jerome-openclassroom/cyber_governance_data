@@ -1,0 +1,12 @@
+nom,prenom,email,fonction
+FRASSON,Jérôme,jerome.frasson.vsi@gmail.com,"Intégrité des données - Sécurité informatique"
+DUPONT,Marie,marie.dupont@entreprise.fr,"Cheffe de projet digital"
+MARTIN,Thomas,thomas.martin@entreprise.fr,"Développeur full-stack"
+BERTRAND,Sophie,sophie.bertrand@entreprise.fr,"Responsable RH"
+LEFEVRE,Luc,luc.lefevre@entreprise.fr,"Analyste financier"
+MOREAU,Camille,camille.moreau@entreprise.fr,"Designer UX/UI"
+FOURNIER,Antoine,antoine.fournier@entreprise.fr,"Ingénieur DevOps"
+ROUX,Eloïse,eloise.roux@entreprise.fr,"Chargée de communication"
+LEMAIRE,Paul,paul.lemaire@entreprise.fr,"Responsable logistique"
+GIRARD,Chloé,chloe.girard@entreprise.fr,"Data Scientist"
+DUBOIS,Nicolas,nicolas.dubois@entreprise.fr,"Technicien support IT"
