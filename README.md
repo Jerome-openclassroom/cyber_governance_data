@@ -77,7 +77,13 @@ git clone https://github.com/Jerome-openclassroom/cyber_gouvernance_data.git
 
 - **Mail d’alerte** : détection d’un script altéré.  
 - **Password check (HITL)** : validation par mot de passe.  
-- **Workflows** : vues d’ensemble des workflows `cyber_gouvernance_data` et `Restauration_HITL`.  
+
+### Vue d’ensemble des workflows
+
+![Workflow principal](https://github.com/Jerome-openclassroom/cyber_governance_data/blob/main/screenshots/cyber_gouvernance_data.png)
+
+![Workflow de restauration](https://github.com/Jerome-openclassroom/cyber_governance_data/blob/main/screenshots/Restauration_HITL.png)
+
 
 ---
 
